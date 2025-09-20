@@ -1,5 +1,6 @@
 // Get a reference to the body and other elements
 const body = document.body;
+const page1Section = document.getElementById('page1'); // Get the parent section
 const heading = document.getElementById('page1_heading');
 const imageBtn = document.getElementById('img-btn');
 const image = document.querySelector('.page1 img');
@@ -204,17 +205,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 heart.style.top = '20%';
                 heart.style.opacity = '0';
             }, 500);
-        }, 4000);
+        }, 2000);
     });
 });
 
-imageBtn.addEventListener('click', () => {
-    // Play background music on the first click
-    if (clickCount === 0) {
-        backgroundMusic.play().catch(e => console.error("Autoplay was prevented:", e));
-    }
+// The event listener is now on the parent section, 'page1Section',
+// which contains both the button (with the teddy) and the heading.
+// This handles clicks on either element due to event bubbling.
+page1Section.addEventListener('click', (event) => {
+    // Check if the click occurred on a child element of page1Section
+    const isClickOnChild = page1Section.contains(event.target);
 
-    if (animationStage === 1) {
+    if (isClickOnChild && animationStage === 1) {
+        // Play background music on the first click
+        if (clickCount === 0) {
+            backgroundMusic.play().catch(e => console.error("Autoplay was prevented:", e));
+        }
+
         if (clickCount < MAX_CLICKS_FOR_GROWTH) {
             heart.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
             heart.style.opacity = '1';
