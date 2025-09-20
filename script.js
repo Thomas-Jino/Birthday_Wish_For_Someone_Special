@@ -150,7 +150,7 @@ function showWish() {
     const wishBox = document.createElement('div');
     wishBox.classList.add('wish-box');
     wishBox.innerHTML = `<p style="font-size: 16px;"><b>Happy Birthday Nandhana💗</b>, You deserve a day full of smiles, surprises, and love... and I hope this little effort makes you feel how important you are.</p>`;
-    wishBox.style.width = "220px";
+    wishBox.style.width = "250px";
     wishBox.style.padding = "20px";
     wishBox.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.8)";
     body.appendChild(wishBox);
